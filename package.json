@@ -1,6 +1,6 @@
 {
   "name": "@donotdev/oauth",
-  "version": "0.1.42",
+  "version": "0.1.44",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -30,8 +30,8 @@
     "valibot": "^1.2.0"
   },
   "peerDependencies": {
-    "@donotdev/components": "^0.1.42",
-    "@donotdev/core": "^0.1.42",
+    "@donotdev/components": "^0.1.44",
+    "@donotdev/core": "^0.1.43",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
