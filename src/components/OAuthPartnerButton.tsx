@@ -11,6 +11,7 @@
  */
 
 import { useMemo } from 'react';
+import type { ButtonHTMLAttributes, CSSProperties } from 'react';
 
 import {
   Button,
@@ -25,8 +26,6 @@ import type { OAuthPartnerId, OAuthPurpose } from '@donotdev/core';
 
 import { useOAuthPartner, useOAuthStore } from '../oauthStore';
 import { useOAuth } from '../useOAuth';
-
-import type { ButtonHTMLAttributes, CSSProperties } from 'react';
 
 /** Props for the OAuthPartnerButton component. */
 export interface OAuthPartnerButtonProps {
