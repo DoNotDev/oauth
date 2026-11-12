@@ -31,6 +31,7 @@ import { useOAuth } from '../useOAuth';
 export interface OAuthPartnerButtonProps {
   partnerId: OAuthPartnerId;
   purpose?: OAuthPurpose;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- why: public callback; giving result a concrete type is a breaking change for consumers (any-audit)
   onSuccess?: (result: any) => void;
   onOAuthError?: (error: Error) => void;
   className?: string;

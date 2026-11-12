@@ -51,11 +51,23 @@ let connectErrorNotified = 0;
 let disconnectErrorNotified = 0;
 let callbackErrorNotified = 0;
 
-// Store keys (state that comes from Zustand store)
-const STORE_KEYS: Set<keyof OAuthAPI> = new Set([
+/** OAuthAPI keys read verbatim from the Zustand store state. */
+type OAuthStoreKey = keyof OAuthAPI &
+  keyof ReturnType<typeof useOAuthStore.getState>;
+
+const DIRECT_STORE_KEYS: ReadonlySet<keyof OAuthAPI> = new Set<OAuthStoreKey>([
   'status',
   'error',
   'partners',
+]);
+
+function isDirectStoreKey(key: keyof OAuthAPI): key is OAuthStoreKey {
+  return DIRECT_STORE_KEYS.has(key);
+}
+
+// Store keys (state that comes from Zustand store)
+const STORE_KEYS: Set<keyof OAuthAPI> = new Set<keyof OAuthAPI>([
+  ...DIRECT_STORE_KEYS,
   'connectedPartners',
 ]);
 
@@ -344,7 +356,7 @@ export function useOAuth<K extends keyof OAuthAPI>(key: K): OAuthAPI[K] {
       return state.getConnectedPartners();
     }
     // Simple property access for direct state properties
-    return (state as any)[key];
+    return isDirectStoreKey(key) ? state[key] : null;
   });
 
   // ==========================================================================
@@ -498,6 +510,7 @@ function validateCredentials(obj: Record<string, unknown>): OAuthCredentials {
   if (typeof obj.accessToken !== 'string' || obj.accessToken === '') {
     throw new Error('Token exchange returned empty access token');
   }
+  // why: only accessToken is checked here; remaining fields pass through untouched (existing contract)
   return obj as unknown as OAuthCredentials;
 }
 

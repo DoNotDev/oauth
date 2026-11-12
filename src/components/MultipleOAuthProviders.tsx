@@ -48,6 +48,7 @@ export interface MultipleOAuthProvidersProps {
   /** Whether buttons should take full width of their container */
   fullWidth?: boolean;
   /** Callbacks */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- why: public callback; giving result a concrete type is a breaking change for consumers (any-audit)
   onSuccess?: (result: any) => void;
   onError?: (error: Error) => void;
 }
@@ -126,10 +127,7 @@ const MultipleOAuthProvidersComponent: React.ComponentType<
 
     if (layout === 'grid') {
       return (
-        <Grid
-          cols={{ base: 1, sm: 2, md: 3 } as any}
-          className={containerClassName}
-        >
+        <Grid cols={[1, 2, 3, 3]} className={containerClassName}>
           {content}
         </Grid>
       );
