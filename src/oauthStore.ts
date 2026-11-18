@@ -231,7 +231,7 @@ export const useOAuthPartners = () => useOAuthStore((state) => state.partners);
  * @author AMBROISE PARK Consulting
  */
 export const useOAuthPartner = (partnerId: OAuthPartnerId) =>
-  useOAuthStore((state) => state.getPartnerState(partnerId));
+  useOAuthStore((state) => state.partners[partnerId] || null);
 
 /**
  * @version 0.1.0
@@ -239,7 +239,7 @@ export const useOAuthPartner = (partnerId: OAuthPartnerId) =>
  * @author AMBROISE PARK Consulting
  */
 export const useOAuthConnected = (partnerId: OAuthPartnerId) =>
-  useOAuthStore((state) => state.isConnected(partnerId));
+  useOAuthStore((state) => state.partners[partnerId]?.isConnected || false);
 
 /**
  * @version 0.1.0
@@ -247,4 +247,4 @@ export const useOAuthConnected = (partnerId: OAuthPartnerId) =>
  * @author AMBROISE PARK Consulting
  */
 export const useOAuthCredentials = (partnerId: OAuthPartnerId) =>
-  useOAuthStore((state) => state.getCredentials(partnerId));
+  useOAuthStore((state) => state.partners[partnerId]?.credentials || null);
