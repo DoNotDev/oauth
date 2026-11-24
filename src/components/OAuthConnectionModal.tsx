@@ -59,14 +59,8 @@ export function OAuthConnectionModal({
     <Dialog
       open={open}
       onOpenChange={onOpenChange}
-      title={title || t('connectServices', 'Connect Services')}
-      description={
-        description ||
-        t(
-          'oauth.chooseService',
-          'Choose which services to connect for enhanced functionality'
-        )
-      }
+      title={title || t('connectServices')}
+      description={description || t('chooseService')}
     >
       <div style={{ padding: 'var(--gap-md)' }}>
         {enabledProviders.length > 0 ? (
@@ -85,22 +79,14 @@ export function OAuthConnectionModal({
               color: 'var(--muted-foreground)',
             }}
           >
-            <p>
-              {t(
-                'oauth.noProvidersEnabled',
-                'No OAuth providers are currently enabled'
-              )}
-            </p>
+            <p>{t('noProvidersEnabled')}</p>
             <p
               style={{
                 marginTop: 'var(--gap-sm)',
                 fontSize: 'var(--font-size-sm)',
               }}
             >
-              {t(
-                'oauth.checkConfiguration',
-                'Check your environment configuration'
-              )}
+              {t('checkConfiguration')}
             </p>
           </div>
         )}

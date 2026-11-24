@@ -95,13 +95,7 @@ const MultipleOAuthProvidersComponent: React.ComponentType<
   // Show helpful message if no providers are enabled
   if (providers.length === 0) {
     return (
-      <Alert
-        title={t('noProviders', 'No OAuth Providers')}
-        description={t(
-          'noProvidersMessage',
-          'No OAuth providers are currently enabled. Check your environment configuration.'
-        )}
-      />
+      <Alert title={t('noProviders')} description={t('noProvidersMessage')} />
     );
   }
 
@@ -150,9 +144,7 @@ const MultipleOAuthProvidersComponent: React.ComponentType<
       className="dndev-mx-auto"
       id={componentId}
       role="region"
-      aria-label={
-        ariaLabel || t('aria.connectionOptions', 'Service connection options')
-      }
+      aria-label={ariaLabel || t('aria.connectionOptions')}
     >
       {renderProviders()}
     </div>
